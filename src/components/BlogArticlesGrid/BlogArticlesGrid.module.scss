@@ -1,0 +1,65 @@
+@use "../../styles/breakpoints" as *;
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.gridShell {
+  overflow: visible;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2.2vw, 1.5rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (max-width: $bp-max-container) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: $bp-max-mobile) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: $bp-max-mobile-narrow) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.gridItem {
+  min-width: 0;
+}
+
+.gridItemEntering {
+  opacity: 0;
+  animation: gridItemReveal 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--enter-delay, 0s);
+}
+
+@keyframes gridItemReveal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gridItemEntering {
+    animation: none;
+    opacity: 1;
+  }
+}

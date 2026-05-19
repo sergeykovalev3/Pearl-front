@@ -1,0 +1,237 @@
+@use "../../styles/breakpoints" as *;
+@use "../../styles/siteHeader" as site-header;
+
+.page {
+  box-sizing: border-box;
+  @include site-header.padding-top-below-site-header;
+  min-height: 100vh;
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+  background-color: var(--colorWhite);
+}
+
+.content {
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+}
+
+.profileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.35rem);
+  text-align: center;
+
+  @media (min-width: $bp-min-tablet) {
+    flex-direction: row;
+    align-items: center;
+    text-align: start;
+  }
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: clamp(72px, 14vw, 92px);
+  height: clamp(72px, 14vw, 92px);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    152deg,
+    var(--colorBlue) 0%,
+    color-mix(in srgb, var(--colorDarkBlue) 55%, var(--colorBlue)) 100%
+  );
+  box-shadow:
+    0 4px 18px rgb(19 118 248 / 36%),
+    0 0 0 3px rgb(255 255 255 / 96%);
+}
+
+.avatarLetter {
+  font-weight: 700;
+  font-size: clamp(1.65rem, 4vw, 2rem);
+  line-height: 1;
+  color: var(--colorWhite);
+  letter-spacing: -0.03em;
+  user-select: none;
+}
+
+.identity {
+  min-width: 0;
+  flex: 1;
+}
+
+.name {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 3.5vw, 1.65rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--colorDarkBlue);
+}
+
+.email {
+  margin: 0;
+  margin-top: 0.35rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: rgb(1 22 50 / 62%);
+  word-break: break-word;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  margin-top: clamp(1.35rem, 3vw, 1.75rem);
+}
+
+.book {
+  flex-shrink: 0;
+}
+
+.logoutLink {
+  font: inherit;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--colorDarkBlue);
+  transition: color 0.22s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--colorBlue);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--colorBlue);
+    outline-offset: 3px;
+    color: var(--colorBlue);
+  }
+}
+
+.divider {
+  margin: clamp(1.75rem, 4vw, 2.25rem) 0;
+  border: none;
+  border-top: 1px solid rgb(1 22 50 / 8%);
+}
+
+.historyTitle {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+  letter-spacing: -0.015em;
+  color: var(--colorDarkBlue);
+}
+
+.historyIntro {
+  margin: 0;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgb(1 22 50 / 58%);
+}
+
+.historyList {
+  margin: 0;
+  margin-top: clamp(1rem, 2.5vw, 1.35rem);
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.historyCard {
+  padding: clamp(0.95rem, 2.5vw, 1.15rem);
+  border-radius: 12px;
+  background: linear-gradient(
+    145deg,
+    rgb(250 252 255 / 98%),
+    rgb(230 246 254 / 38%)
+  );
+  border: 1px solid rgb(19 118 248 / 14%);
+}
+
+.historyCardTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem 1rem;
+}
+
+.preferredDate {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--colorDarkBlue);
+}
+
+.metaLine {
+  margin: 0;
+  margin-top: 0.45rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: rgb(1 22 50 / 52%);
+}
+
+.message {
+  margin: 0;
+  margin-top: 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgb(1 22 50 / 78%);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+.historyEmpty {
+  margin: 0;
+  margin-top: clamp(1rem, 2.5vw, 1.35rem);
+  padding: clamp(1.25rem, 3vw, 1.6rem);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: rgb(1 22 50 / 62%);
+  background: rgb(230 246 254 / 35%);
+  border: 1px dashed rgb(19 118 248 / 22%);
+}
+
+.historyEmptyLink {
+  font-weight: 600;
+  color: var(--colorBlue);
+
+  &:focus-visible {
+    outline: 2px solid var(--colorBlue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: color-mix(in srgb, var(--colorBlue) 82%, var(--colorDarkBlue));
+    }
+  }
+}
+
+.historyLoading {
+  margin: 0;
+  margin-top: clamp(1rem, 2.5vw, 1.35rem);
+  font-size: 0.9rem;
+  color: rgb(1 22 50 / 52%);
+}
+
+.historyError {
+  margin: 0;
+  margin-top: clamp(1rem, 2.5vw, 1.35rem);
+  font-size: 0.9rem;
+  color: #c62828;
+}

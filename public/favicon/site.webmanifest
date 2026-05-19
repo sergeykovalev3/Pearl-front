@@ -1,0 +1,15 @@
+{
+  "name": "Pearl Dental Clinic",
+  "short_name": "Pearl",
+  "icons": [
+    {
+      "src": "/favicon/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#222830",
+  "background_color": "#222830",
+  "display": "standalone"
+}

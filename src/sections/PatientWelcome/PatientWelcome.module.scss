@@ -1,0 +1,348 @@
+@use "../../styles/breakpoints" as *;
+
+.section {
+  padding-block: clamp(2rem, 6vw, 60px);
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(24px, 4.5vw, 60px);
+  padding-inline: clamp(12px, 6vw, 70px);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 600;
+  font-size: clamp(32px, 1.1vw + 1.45rem, 42px);
+  line-height: 125%;
+  text-transform: capitalize;
+  color: var(--colorDarkBlue);
+  margin-bottom: clamp(14px, 2vw, 20px);
+}
+
+.description {
+  font-size: clamp(16px, 0.2vw + 0.95rem, 18px);
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorDarkGrey);
+  margin-bottom: clamp(22px, 4vw, 40px);
+}
+
+.formSlot {
+  position: relative;
+  width: 100%;
+  margin-top: clamp(18px, 3vw, 30px);
+}
+
+.formLayerHidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.successOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  min-height: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.successOverlay .formSuccess {
+  width: 100%;
+  box-sizing: border-box;
+  pointer-events: auto;
+  overflow: visible;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: visible;
+  padding-bottom: 1.35rem;
+  gap: 0;
+}
+
+.formRow {
+  display: flex;
+  width: 100%;
+}
+
+.formFields {
+  width: 73%;
+  min-width: 0;
+}
+
+.fieldStack {
+  position: relative;
+  left: -7px;
+}
+
+.field {
+  width: calc(100% + 7px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #cecece;
+  border-radius: 10px;
+  padding: 15px 10px 15px 20px;
+  position: relative;
+  right: -7px;
+  z-index: 1;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.field:not(.fieldInvalid):focus-within {
+  border-color: var(--colorBlue);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--colorBlue) 32%, transparent);
+}
+
+.field.fieldInvalid:focus-within {
+  border-color: #c62828;
+  box-shadow: 0 0 0 1px rgb(198 40 40 / 30%);
+}
+
+.fieldInvalid {
+  border-color: #c62828;
+}
+
+.fieldError {
+  position: absolute;
+  left: 20px;
+  padding-top: 5px;
+  margin: 0;
+  max-width: calc(100% - 24px);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: #c62828;
+}
+
+.submitError {
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: #c62828;
+  background-color: rgb(198 40 40 / 10%);
+  border-radius: 8px;
+  border: 1px solid rgb(198 40 40 / 18%);
+  box-shadow: 0 4px 14px rgb(198 40 40 / 8%);
+  text-align: left;
+  text-wrap: pretty;
+}
+
+.formSuccess {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 18px 20px 18px 18px;
+  border-radius: 12px;
+  color: var(--colorDarkBlue);
+  background: linear-gradient(
+    135deg,
+    rgb(230 246 254 / 95%) 0%,
+    rgb(255 255 255 / 98%) 55%,
+    rgb(230 246 254 / 88%) 100%
+  );
+  border: 1px solid rgb(19 118 248 / 16%);
+  box-shadow:
+    0 1px 2px rgb(1 22 50 / 4%),
+    0 12px 36px rgb(19 118 248 / 10%);
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  animation: patientWelcomeSuccessIn 0.65s cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+  animation-delay: 40ms;
+}
+
+.formSuccessIcon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-top: 2px;
+  border-radius: 50%;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--colorWhite);
+  background: linear-gradient(
+    145deg,
+    var(--colorBlue) 0%,
+    var(--colorSkyBlue) 100%
+  );
+  box-shadow: 0 6px 18px rgb(19 118 248 / 28%);
+}
+
+.formSuccessText {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+
+@keyframes patientWelcomeSuccessIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field {
+    transition-duration: 0.01ms;
+  }
+
+  .fieldButton {
+    transition-duration: 0.01ms;
+  }
+
+  .formSuccess {
+    animation: none;
+    animation-delay: 0s;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fieldInput {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorDarkGrey);
+  width: 100%;
+
+  &::placeholder {
+    font-size: 16px;
+    line-height: 155%;
+    letter-spacing: 0.015em;
+    color: #cfcfcf;
+  }
+}
+
+.fieldIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.fieldButton {
+  width: 27%;
+  padding: 15px 10px;
+
+  background: var(--colorBlue);
+  border-radius: 0px 10px 10px 0px;
+  border: none;
+  cursor: pointer;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorWhite);
+  position: relative;
+  z-index: 2;
+  transition: background-color 0.28s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: color-mix(in srgb, var(--colorBlue) 74%, black);
+    }
+
+    &:active {
+      background-color: color-mix(in srgb, var(--colorBlue) 62%, black);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--colorDarkBlue);
+    outline-offset: 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.image {
+  width: 100%;
+  max-width: 413px;
+  justify-self: end;
+  min-width: 0;
+  background: linear-gradient(
+    52.56deg,
+    rgba(37, 180, 248, 0) 0%,
+    rgba(37, 180, 248, 0.473958) 64.42%,
+    #25b4f8 126.21%
+  );
+  border-radius: 10px;
+
+  img,
+  .imagePhoto {
+    border-radius: 10px;
+    position: relative;
+    top: clamp(16px, 3vw, 30px);
+    right: clamp(12px, 2.5vw, 30px);
+  }
+}
+
+.imagePhoto {
+  display: block;
+  width: 100%;
+  max-width: 413px;
+  height: auto;
+}
+
+@media (max-width: $bp-max-tablet) {
+  .wrapper {
+    gap: clamp(20px, 4vw, 36px);
+    padding-inline: clamp(12px, 4vw, 48px);
+  }
+
+  .image {
+    justify-self: center;
+  }
+}
+
+@media (max-width: $bp-max-mobile) {
+  .wrapper {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(28px, 6vw, 40px);
+    padding-inline: clamp(12px, 4vw, 32px);
+  }
+
+  .image {
+    justify-self: center;
+    max-width: min(413px, 100%);
+  }
+
+  .imagePhoto {
+    margin-inline: auto;
+  }
+}

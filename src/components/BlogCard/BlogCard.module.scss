@@ -1,0 +1,126 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.8vw, 22px);
+  height: 100%;
+  padding: clamp(11px, 1.9vw, 20px);
+  border-radius: 12px;
+  background-color: var(--colorLightBlue);
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: color-mix(in srgb, var(--colorBlue) 22%, rgb(0 0 0 / 6%));
+      box-shadow: 0 14px 44px rgb(37 132 247 / 11%);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--colorBlue);
+    outline-offset: 3px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: 0 8px 28px rgb(37 132 247 / 9%);
+    transition-duration: 0.22s;
+  }
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 13px;
+  border-radius: 5px;
+  background-color: var(--colorDarkBlue);
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorWhite);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorDarkBlue);
+  margin: 10px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.description {
+  margin: 2px 0 0;
+  font-size: 18px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorDarkGrey);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.author {
+  margin-top: auto;
+  padding-top: clamp(8px, 1.5vw, 12px);
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorDarkBlue);
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    transition: none;
+  }
+}

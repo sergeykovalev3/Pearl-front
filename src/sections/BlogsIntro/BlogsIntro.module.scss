@@ -1,0 +1,183 @@
+@use "../../styles/siteHeader" as site-header;
+
+.section {
+  position: relative;
+  box-sizing: border-box;
+  @include site-header.padding-top-below-site-header;
+  overflow-x: hidden;
+  padding-bottom: clamp(2rem, 6vw, 4rem);
+}
+
+.container {
+  width: 100%;
+}
+
+.pageWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.introWrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.introContent {
+  max-width: min(38rem, 100%);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.searchSlot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(28px, 4vw, 40px);
+}
+.articlesGrid {
+  align-self: stretch;
+  width: 100%;
+}
+
+.resultsRegion {
+  align-self: stretch;
+  width: 100%;
+  margin-top: clamp(1.35rem, 3vw, 2.25rem);
+  min-height: 8rem;
+}
+
+.skeletonCard {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.8vw, 22px);
+  height: 100%;
+  padding: clamp(11px, 1.9vw, 20px);
+  border-radius: 12px;
+  background-color: var(--colorLightBlue);
+  box-sizing: border-box;
+  border: 1px solid rgb(0 0 0 / 4%);
+}
+
+.skeletonImage {
+  aspect-ratio: 1.35 / 1;
+  border-radius: 10px;
+  background: linear-gradient(
+    105deg,
+    rgb(220 240 252) 0%,
+    rgb(255 255 255 / 92%) 45%,
+    rgb(220 240 252) 100%
+  );
+  background-size: 180% 100%;
+  animation: blogsSearchShimmer 1.15s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.skeletonLine {
+  height: 13px;
+  border-radius: 6px;
+  background: rgb(1 22 50 / 10%);
+}
+
+.skeletonLineShort {
+  width: 58%;
+}
+
+.skeletonLine + .skeletonLine {
+  opacity: 0.92;
+}
+
+.emptyState {
+  display: flex;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 3rem) 1rem;
+}
+
+.emptyText {
+  margin: 0;
+  max-width: 28rem;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--colorDarkGrey);
+}
+
+.emptyQuery {
+  font-weight: 600;
+  color: var(--colorDarkBlue);
+}
+
+@keyframes blogsSearchShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -80% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonImage {
+    animation: none;
+    background: rgb(230 246 254);
+  }
+}
+
+.searchField {
+  width: 100%;
+  max-width: min(26rem, 100%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 16px 15px 18px;  border: 1px solid #cecece;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition:
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.searchField:focus-within {
+  border-color: var(--colorBlue);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--colorBlue) 32%, transparent);
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  color: var(--colorDarkGrey);
+}
+
+.searchInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorDarkGrey);
+
+  &::placeholder {
+    font-size: 16px;
+    line-height: 155%;
+    letter-spacing: 0.015em;
+    color: #cfcfcf;
+  }
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    appearance: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .searchField {
+    transition-duration: 0.01ms;
+  }
+}

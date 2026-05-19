@@ -1,0 +1,210 @@
+.section {
+  padding-block: 60px;
+}
+
+.container {
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  width: 100%;
+}
+
+.info {
+  max-width: 480px;
+}
+
+.carouselBlock {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.carouselViewport {
+  --reviews-gap: clamp(0.5rem, 1vw + 0.25rem, 1rem);
+  --reviews-slide-max: min(100%, 420px);
+
+  container-type: inline-size;
+  width: 100%;
+  min-width: 0;
+}
+
+.carouselRow {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--reviews-gap);
+  transition: transform 0.48s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.carouselCardCell {
+  flex: 0 0 calc((100cqi - (var(--spv) - 1) * var(--reviews-gap)) / var(--spv));
+  box-sizing: border-box;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  isolation: isolate;
+}
+
+.carouselCardCellActive {
+  opacity: 1;
+  transition: opacity 0.48s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.carouselCardCellInactive {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.48s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.slide {
+  width: 100%;
+  max-width: var(--reviews-slide-max);
+  min-width: 0;
+  margin-inline: auto;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 0.5rem + 1.25vw, 1.35rem);
+  padding: clamp(14px, 0.85rem + 1.35vw, 30px);
+  background-color: var(--colorWhite);
+  border-radius: clamp(10px, 0.55rem + 1.1vw, 18px);
+  box-shadow: 0 12px 40px
+    color-mix(in srgb, var(--colorDarkBlue) 8%, transparent);
+}
+
+.slideHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(10px, 0.5rem + 1.5vw, 20px);
+}
+
+.avatarWrap {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(48px, 2.25rem + 3.5vw, 76px);
+  height: clamp(48px, 2.25rem + 3.5vw, 76px);
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--colorDarkBlue) 6%, transparent);
+}
+
+.avatar {
+  object-fit: cover;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 0.2rem + 0.65vw, 10px);
+  min-width: 0;
+}
+
+.name {
+  font-weight: 500;
+  font-size: clamp(1.0625rem, 0.88rem + 0.75vw, 1.5rem);
+  line-height: 1.2;
+  letter-spacing: 0.015em;
+  color: var(--colorDarkBlue);
+  text-wrap: balance;
+}
+
+.stars {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(1px, 0.15vw, 3px);
+}
+
+.starIcon {
+  flex-shrink: 0;
+  display: block;
+  width: clamp(14px, 0.8rem + 0.45vw, 20px);
+  height: auto;
+}
+
+.reviewText {
+  font-size: clamp(0.8125rem, 0.74rem + 0.55vw, 1.0625rem);
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: var(--colorDarkGrey);
+  text-wrap: pretty;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(8px, 2vw, 14px);
+}
+
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--colorWhite);
+  background-color: var(--colorBlue);
+  transition:
+    background-color 0.25s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  &:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  @media (hover: hover) {
+    &:not(:disabled):hover {
+      background-color: color-mix(in srgb, var(--colorBlue) 72%, black);
+    }
+  }
+
+  &:not(:disabled):active {
+    transform: scale(0.96);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--colorDarkBlue);
+    outline-offset: 3px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carouselRow {
+    transition: none;
+  }
+
+  .carouselCardCellActive,
+  .carouselCardCellInactive {
+    transition: none;
+  }
+
+  .navButton:not(:disabled):active {
+    transform: none;
+  }
+}

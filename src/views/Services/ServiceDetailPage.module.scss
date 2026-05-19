@@ -1,0 +1,113 @@
+@use "../../styles/siteHeader" as site-header;
+
+.page {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.article {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background-color: var(--colorWhite);
+  @include site-header.padding-top-below-site-header;
+}
+
+.heroIcon {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+/* Match ServiceCard icon scale (~59px art) so PNGs are not upscaled and stay crisp. */
+.heroIconRing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(5.25rem, 4.875rem + 1vw, 5.75rem);
+  height: clamp(5.25rem, 4.875rem + 1vw, 5.75rem);
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--colorSkyBlue);
+  padding: clamp(0.4375rem, 0.35rem + 0.35vw, 0.5625rem);
+  box-sizing: border-box;
+  box-shadow:
+    0 8px 26px color-mix(in srgb, var(--colorBlue) 10%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--colorBlue) 8%, transparent);
+}
+
+.heroIconImage {
+  width: 3.6875rem;
+  height: 3.6875rem;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.inner {
+  width: 100%;
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+}
+
+.body {
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+.postHeader {
+  margin: 0;
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--colorDarkBlue);
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--colorBlue);
+  margin-bottom: 1.25rem;
+}
+
+.prose {
+  margin-top: 0.25rem;
+}
+
+.paragraph {
+  margin: 0 0 1.1em;
+  font-size: clamp(17px, 1.06vw + 15px, 18px);
+  line-height: 1.72;
+  color: var(--colorDarkGrey);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--colorDarkBlue);
+  background-color: var(--colorLightBlue);
+}

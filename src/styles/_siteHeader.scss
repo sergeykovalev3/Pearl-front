@@ -1,0 +1,7 @@
+@mixin padding-top-below-site-header {
+  padding-top: calc(
+    env(safe-area-inset-top, 0px) +
+      max(var(--site-header-offset-fallback), var(--site-header-offset, 0px)) +
+      var(--site-header-gap)
+  );
+}

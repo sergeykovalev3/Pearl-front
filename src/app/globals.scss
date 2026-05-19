@@ -1,0 +1,193 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Baseline reset — predictable defaults across browsers */
+html {
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+/* Lock document scroll when mobile menu is open — padding absorbs former scrollbar width */
+html[data-scroll-locked] {
+  overflow: hidden;
+  padding-right: var(--layout-scrollbar-width, 0px);
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+/* Site-themed scrollbar (Firefox + WebKit) */
+@supports (scrollbar-width: thin) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--colorBlue) rgb(230 246 254 / 85%);
+  }
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  margin-block: 4px;
+  background: rgb(230 246 254 / 65%);
+  border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  background-color: var(--colorBlue);
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background-color: #0f62d6;
+}
+
+html::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-regular);
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:root {
+  --colorWhite: #ffffff;
+  --colorLightBlue: #e6f6fe;
+  --colorBlue: #1376f8;
+  --colorDarkBlue: #011632;
+  --colorDarkGrey: #3c4959;
+  --colorSkyBlue: #25b4f8;
+  --bgSkyBlue: linear-gradient(180deg, #e6f6fe 0%, rgba(230, 246, 254, 0) 100%);
+
+  --container-max: 1280px;
+  --gutter-x: 15px;
+
+  /* Width of the vertical scrollbar while the document scrolls; overridden when the menu locks scroll */
+  --layout-scrollbar-width: 0px;
+
+  --site-header-gap: 16px;
+
+  /* Mirrors Header bar height until JS sets --site-header-offset on <body> (pixel-measured).
+     Floored so SSR / first paint on narrow screens never underestimates vs the real header. */
+  --site-header-offset-fallback: max(
+    5.75rem,
+    calc(
+      clamp(1rem, 4vw, 2.5rem) + clamp(12px, 2.5vw, 17px) +
+        max(
+          calc(clamp(104px, 34vw, 170px) * 231 / 705),
+          clamp(44px, 11vw, 50px)
+        ) +
+        clamp(12px, 2.5vw, 17px)
+    )
+  );
+
+  /* Set on <html> by next/font/local (`generalSans.variable`) */
+  --font-family-sans:
+    var(--font-general-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--colorWhite);
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+}
+
+.motionComposite {
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Full-width block: horizontal padding aligned to the grid. Use without `.container` when content should span the full padded width (no max-width cap). */
+.page-gutter {
+  width: 100%;
+  padding-inline: var(--gutter-x);
+}
+
+/* Centered content column: max-width + horizontal padding + auto margins. */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter-x);
+}

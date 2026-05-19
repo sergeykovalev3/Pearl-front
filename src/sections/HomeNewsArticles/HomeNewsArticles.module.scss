@@ -1,0 +1,25 @@
+.section {
+  padding-block: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.container {
+  width: 100%;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  margin-bottom: clamp(1.35rem, 3vw, 2.25rem);
+}
+
+.headLead {
+  flex: 1 1 min(26rem, 100%);
+  min-width: min(100%, 16rem);
+}
+
+.headLeadInfo {
+  max-width: 455px;
+}

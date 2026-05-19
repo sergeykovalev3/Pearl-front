@@ -1,0 +1,67 @@
+@use "../../styles/breakpoints" as *;
+
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 1.5rem);
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: rgb(1 22 50 / 38%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 26rem);
+  box-sizing: border-box;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  border-radius: 10px;
+  background: var(--colorWhite);
+  box-shadow:
+    0 4px 24px rgb(1 22 50 / 12%),
+    0 24px 48px rgb(1 22 50 / 8%);
+}
+
+.title {
+  margin: 0 0 0.625rem;
+  font-weight: 600;
+  font-size: clamp(1.125rem, 0.95rem + 0.55vw, 1.375rem);
+  line-height: 130%;
+  letter-spacing: 0.01em;
+  color: var(--colorDarkBlue);
+}
+
+.body {
+  margin: 0 0 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorDarkGrey);
+}
+
+.closeBtn {
+  width: 100%;
+}
+
+@media (max-width: $bp-max-mobile) {
+  .panel {
+    padding: 1.125rem 1rem 1.25rem;
+  }
+
+  .body {
+    font-size: 0.875rem;
+    margin-bottom: 1.125rem;
+  }
+}

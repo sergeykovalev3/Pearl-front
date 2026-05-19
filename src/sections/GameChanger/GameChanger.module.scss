@@ -1,0 +1,112 @@
+@use "../../styles/breakpoints" as *;
+
+.section {
+  padding: 100px 0;
+}
+
+.wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(16px, 2.5vw, 20px);
+  min-width: 0;
+  background-color: var(--colorDarkBlue);
+  padding: clamp(24px, 4vw + 1rem, 50px) clamp(20px, 3.5vw + 1.25rem, 55px)
+    clamp(24px, 4vw + 1rem, 50px) clamp(18px, 3vw + 0.75rem, 45px);
+  border-radius: clamp(8px, 1.2vw, 10px);
+  max-width: 1065px;
+  margin: 0 auto;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 585px;
+  width: 100%;
+}
+
+.title {
+  font-weight: 600;
+  font-size: clamp(26px, 2.65vw + 1.1rem, 42px);
+  line-height: 125%;
+  text-transform: capitalize;
+  color: var(--colorWhite);
+  margin-bottom: clamp(14px, 2vw, 10px);
+}
+
+.description {
+  font-size: clamp(15px, 0.35vw + 0.92rem, 18px);
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorWhite);
+  margin-bottom: clamp(18px, 3vw, 30px);
+}
+
+.buttonWrap {
+  display: inline-flex;
+}
+
+.image {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 305px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: clamp(8px, 1.2vw, 10px);
+}
+
+.imageImg {
+  width: 100%;
+  max-width: 305px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: $bp-max-tablet) {
+  .section {
+    padding-block: clamp(2rem, 6vw, 100px);
+  }
+
+  .wrapper {
+    gap: clamp(20px, 4vw, 36px);
+    align-items: center;
+  }
+}
+
+@media (max-width: $bp-max-mobile) {
+  .section {
+    padding-block: clamp(2rem, 7vw, 5rem);
+  }
+
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(20px, 5vw, 32px);
+    padding: clamp(1.25rem, 5.5vw, 2.25rem) clamp(12px, 4vw, 32px);
+  }
+
+  .info {
+    max-width: none;
+  }
+
+  .description {
+    margin-bottom: clamp(14px, 3vw, 24px);
+  }
+
+  .image {
+    flex: none;
+    max-width: none;
+    margin-top: clamp(8px, 2vw, 16px);
+  }
+
+  .imageImg {
+    max-width: min(305px, 100%);
+    margin-inline: auto;
+  }
+}

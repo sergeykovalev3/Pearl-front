@@ -1,0 +1,95 @@
+@use "../styles/siteHeader" as site-header;
+
+.main {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  background-color: var(--colorLightBlue);
+  background-image: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 55%) 0%,
+    transparent 38%
+  );
+  @include site-header.padding-top-below-site-header;
+  padding-bottom: clamp(2.75rem, 9vw, 5.25rem);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 34rem;
+  margin-inline: auto;
+  gap: clamp(0.75rem, 2.5vw, 1.1rem);
+}
+
+.code {
+  font-size: clamp(3.25rem, 11vw, 5.5rem);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  color: color-mix(in srgb, var(--colorSkyBlue) 88%, var(--colorDarkBlue));
+  text-shadow: 0 1px 0 rgb(255 255 255 / 65%);
+}
+
+.title {
+  font-size: clamp(1.35rem, 0.75rem + 2.65vw, 1.875rem);
+  font-weight: var(--font-weight-medium);
+  line-height: 120%;
+  letter-spacing: 0.01em;
+  color: var(--colorDarkBlue);
+  text-wrap: balance;
+}
+
+.description {
+  font-size: clamp(0.9375rem, 0.84rem + 0.42vw, 1.0625rem);
+  line-height: 155%;
+  letter-spacing: 0.012em;
+  color: var(--colorDarkGrey);
+  max-width: 26rem;
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.65rem, 3vw, 1rem);
+  margin-top: clamp(0.25rem, 1.8vw, 0.85rem);
+}
+
+.secondaryLink {
+  font-weight: var(--font-weight-semibold);
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorDarkBlue);
+  padding: 14px 8px;
+  border-radius: 10px;
+  background-color: transparent;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--colorBlue);
+  }
+
+  &:active {
+    color: color-mix(in srgb, var(--colorBlue) 82%, black);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--colorDarkBlue);
+    outline-offset: 3px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}

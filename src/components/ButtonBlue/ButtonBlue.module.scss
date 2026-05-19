@@ -1,0 +1,121 @@
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  border-radius: 10px;
+  background-color: var(--colorBlue);
+  cursor: pointer;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorWhite);
+
+  transition:
+    background-color 0.28s ease,
+    box-shadow 0.35s ease,
+    filter 0.22s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: color-mix(in srgb, var(--colorBlue) 72%, black);
+      box-shadow:
+        0 0 24px rgb(19 118 248 / 22%),
+        0 0 44px rgb(19 118 248 / 10%);
+    }
+  }
+
+  &:active {
+    background-color: color-mix(in srgb, var(--colorBlue) 62%, black);
+    filter: brightness(0.98);
+    transition-duration: 0.12s;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--colorDarkBlue);
+    outline-offset: 3px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.62;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+    filter: none;
+  }
+}
+
+.shine {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.label {
+  position: relative;
+  z-index: 1;
+}
+
+.rootShineOn .shine::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  bottom: -40%;
+  left: 0;
+  width: 48%;
+  background: linear-gradient(
+    100deg,
+    rgb(255 255 255 / 0%) 12%,
+    rgb(255 255 255 / 20%) 50%,
+    rgb(255 255 255 / 0%) 88%
+  );
+  transform: translate3d(-130%, 0, 0);
+  animation: buttonBlueShine 6s cubic-bezier(0.45, 0.02, 0.32, 1) infinite;
+}
+
+@keyframes buttonBlueShine {
+  0%,
+  70% {
+    transform: translate3d(-130%, 0, 0);
+    opacity: 0;
+  }
+
+  71% {
+    opacity: 1;
+  }
+
+  86% {
+    transform: translate3d(200%, 0, 0);
+    opacity: 1;
+  }
+
+  87%,
+  100% {
+    transform: translate3d(200%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root {
+    transition-duration: 0.01ms;
+
+    &:active {
+      transition-duration: 0.01ms;
+    }
+  }
+
+  .rootShineOn .shine::after {
+    animation: none;
+  }
+}

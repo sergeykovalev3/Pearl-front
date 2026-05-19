@@ -1,0 +1,143 @@
+@use "../../styles/breakpoints" as *;
+
+.section {
+  padding-bottom: clamp(2rem, 3.5vw + 1rem, 4rem);
+}
+
+.wrapper {
+  width: 100%;
+  padding: clamp(1.125rem, 2.8vw + 0.5rem, 3.125rem)
+    clamp(0.75rem, 2.5vw + 0.375rem, 2.1875rem);
+  border-radius: clamp(8px, 1.2vw, 10px);
+  background-color: var(--colorLightBlue);
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+}
+
+.viewportPending .track {
+  @media (max-width: $bp-max-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.carouselViewport {
+  --services-gap: clamp(0.5rem, 1.25vw + 0.375rem, 1.75rem);
+
+  container-type: inline-size;
+  width: 100%;
+  min-width: 0;
+}
+
+.carouselRow {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--services-gap);
+  transition: transform 0.48s cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: transform;
+}
+
+.carouselCardCell {
+  flex: 0 0 calc((100cqi - (var(--spv) - 1) * var(--services-gap)) / var(--spv));
+  box-sizing: border-box;
+  min-width: 0;
+  display: flex;
+  transition: opacity 0.35s ease;
+}
+
+.carouselCardCellActive {
+  opacity: 1;
+}
+
+.carouselCardCellInactive {
+  opacity: 0;
+}
+
+.track {
+  --services-gap: clamp(0.5rem, 1.25vw + 0.375rem, 1.75rem);
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--services-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  min-width: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.5rem, 1.85vw + 0.2rem, 0.75rem);
+  margin-top: clamp(0.875rem, 2.4vw + 0.45rem, 1.375rem);
+
+  @media (min-width: $bp-min-desktop) {
+    display: none;
+  }
+}
+
+.navPending {
+  min-height: clamp(2.75rem, 2.3rem + 2.2vw, 3rem);
+}
+
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.75rem, 2.3rem + 2.2vw, 3rem);
+  height: clamp(2.75rem, 2.3rem + 2.2vw, 3rem);
+  border-radius: 50%;
+  color: var(--colorWhite);
+  background-color: var(--colorBlue);
+  transition:
+    background-color 0.25s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  &:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  @media (hover: hover) {
+    &:not(:disabled):hover {
+      background-color: color-mix(in srgb, var(--colorBlue) 72%, black);
+    }
+  }
+
+  &:not(:disabled):active {
+    transform: scale(0.96);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--colorDarkBlue);
+    outline-offset: 3px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carouselRow {
+    transition: none;
+  }
+
+  .carouselCardCell {
+    transition: none;
+  }
+
+  .navButton:not(:disabled):active {
+    transform: none;
+  }
+}

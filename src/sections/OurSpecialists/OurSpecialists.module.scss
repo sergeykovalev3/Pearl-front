@@ -1,0 +1,245 @@
+.section {
+  padding-block: 60px;
+  background-color: var(--colorLightBlue);
+}
+
+.container {
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  width: 100%;
+}
+
+.info {
+  max-width: 480px;
+}
+
+.carouselBlock {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.carouselViewport {
+  --specialists-gap: clamp(0.5rem, 1.8vw, 1.25rem);
+
+  container-type: inline-size;
+  width: 100%;
+  min-width: 0;
+}
+
+.carouselRow {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--specialists-gap);
+  transition: transform 0.48s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.carouselCardCell {
+  flex: 0 0
+    calc((100cqi - (var(--spv) - 1) * var(--specialists-gap)) / var(--spv));
+  box-sizing: border-box;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  isolation: isolate;
+}
+
+.carouselCardCellActive {
+  opacity: 1;
+  transition: opacity 0.48s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.carouselCardCellInactive {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.48s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.slide {
+  width: min(100%, 305px);
+  margin-inline: auto;
+  flex-shrink: 0;
+}
+
+.slideMedia {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 305 / 340;
+  border-radius: clamp(10px, 0.55rem + 1.1vw, 18px);
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--colorDarkBlue) 6%, transparent);
+}
+
+.slidePhoto {
+  object-fit: cover;
+}
+
+.linkedInLink {
+  position: absolute;
+  top: clamp(10px, 0.5rem + 1.05vw, 18px);
+  right: clamp(10px, 0.5rem + 1.05vw, 18px);
+  z-index: 2;
+  width: clamp(28px, 1.85rem + 1.05vw, 25px);
+  height: clamp(28px, 1.85rem + 1.05vw, 25px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--colorDarkBlue);
+    outline-offset: 3px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(0);
+    transition-duration: 0.12s;
+  }
+}
+
+.linkedInIcon {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  filter: brightness(0);
+}
+
+.plaque {
+  position: absolute;
+  left: clamp(10px, 0.5rem + 1.05vw, 16px);
+  right: clamp(10px, 0.5rem + 1.05vw, 16px);
+  bottom: clamp(10px, 0.5rem + 1.05vw, 16px);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2px, 0.125rem + 0.35vw, 4px);
+  padding: clamp(10px, 0.58rem + 0.95vw, 12px)
+    clamp(14px, 0.72rem + 1.85vw, 25px) clamp(12px, 0.62rem + 1.55vw, 20px);
+
+  background: linear-gradient(
+    96.2deg,
+    rgba(37, 180, 248, 0.3) 0%,
+    rgba(37, 180, 248, 0) 100%
+  );
+  backdrop-filter: blur(100px);
+  border-radius: clamp(8px, 0.45rem + 0.65vw, 10px);
+}
+
+.plaqueName {
+  font-weight: 500;
+  font-size: clamp(0.9375rem, 0.48rem + 2.2vw, 1.5rem);
+  line-height: 120%;
+  text-transform: capitalize;
+  color: var(--colorWhite);
+}
+
+.plaquePosition {
+  font-weight: 500;
+  font-size: clamp(0.75rem, 0.52rem + 0.92vw, 1rem);
+  line-height: 155%;
+  letter-spacing: 0.015em;
+  color: var(--colorWhite);
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(8px, 2vw, 14px);
+}
+
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--colorWhite);
+  background-color: var(--colorBlue);
+  transition:
+    background-color 0.25s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+
+  &:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  @media (hover: hover) {
+    &:not(:disabled):hover {
+      background-color: color-mix(in srgb, var(--colorBlue) 72%, black);
+    }
+  }
+
+  &:not(:disabled):active {
+    transform: scale(0.96);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--colorDarkBlue);
+    outline-offset: 3px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carouselRow {
+    transition: none;
+  }
+
+  .carouselCardCellActive,
+  .carouselCardCellInactive {
+    transition: none;
+  }
+
+  .linkedInLink {
+    transition: none;
+  }
+
+  .navButton:not(:disabled):active {
+    transform: none;
+  }
+
+  @media (hover: hover) {
+    .linkedInLink:hover,
+    .linkedInLink:active {
+      transform: none;
+    }
+  }
+}

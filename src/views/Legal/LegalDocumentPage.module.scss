@@ -1,0 +1,72 @@
+@use "../../styles/siteHeader" as site-header;
+
+.page {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.shell {
+  width: 100%;
+  flex: 1;
+}
+
+.article {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding-inline: 0;
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+  background-color: var(--colorWhite);
+  @include site-header.padding-top-below-site-header;
+}
+
+.header {
+  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--colorDarkBlue);
+  margin: 0 0 0.5rem;
+}
+
+.meta {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--colorBlue);
+}
+
+.prose {
+  color: var(--colorDarkGrey);
+}
+
+.block {
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.h2 {
+  font-size: clamp(1.125rem, 2.2vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--colorDarkBlue);
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.015em;
+}
+
+.paragraph {
+  margin: 0 0 1em;
+  font-size: clamp(17px, 1.06vw + 15px, 18px);
+  line-height: 1.72;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
